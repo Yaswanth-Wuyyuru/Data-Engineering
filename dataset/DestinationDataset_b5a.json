@@ -1,0 +1,13 @@
+{
+	"name": "DestinationDataset_b5a",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SinkLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

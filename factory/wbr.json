@@ -1,0 +1,9 @@
+{
+	"name": "wbr",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1cb21043-90b6-4c1c-ae1b-b2bbc4e0a6ec",
+		"tenantId": "dd9abcfe-e6ef-418f-a611-f84f0b71c986"
+	}
+}
