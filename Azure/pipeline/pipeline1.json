@@ -24,7 +24,7 @@
 							"referenceName": "AzureBlobStorage1",
 							"type": "LinkedServiceReference"
 						},
-						"folderPath": "salesdata/staging"
+						"folderPath": ""
 					},
 					"compute": {
 						"coreCount": 8,
