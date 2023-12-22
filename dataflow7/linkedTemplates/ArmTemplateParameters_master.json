@@ -14,6 +14,9 @@
 		"SourceLinkedService_connectionString": {
 			"value": ""
 		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/5245ea50-9096-4546-a277-f939359e2b82/resourceGroups/AzureDataEngineering/providers/Microsoft.Storage/storageAccounts/dataflow7"
+		},
 		"containerUri": {
 			"value": ""
 		},
