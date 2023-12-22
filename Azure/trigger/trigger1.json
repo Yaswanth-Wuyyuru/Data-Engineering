@@ -1,0 +1,24 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/salesdata/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/5245ea50-9096-4546-a277-f939359e2b82/resourceGroups/AzureDataEngineering/providers/Microsoft.Storage/storageAccounts/dataflow7",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
