@@ -21,7 +21,7 @@
 					},
 					"staging": {
 						"linkedService": {
-							"referenceName": "AzureBlobStorage1",
+							"referenceName": "SourceLinkedService",
 							"type": "LinkedServiceReference"
 						},
 						"folderPath": ""
