@@ -1,0 +1,49 @@
+{
+	"name": "SalesDataDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SourceLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesData.csv",
+				"container": "salesdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Company",
+				"type": "String"
+			},
+			{
+				"name": "Month",
+				"type": "String"
+			},
+			{
+				"name": "Sale2018",
+				"type": "String"
+			},
+			{
+				"name": "Sale2019",
+				"type": "String"
+			},
+			{
+				"name": "Sale2020",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
