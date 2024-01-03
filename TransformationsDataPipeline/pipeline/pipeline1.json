@@ -23,7 +23,8 @@
 						"linkedService": {
 							"referenceName": "PivotTransformationsLinkedService",
 							"type": "LinkedServiceReference"
-						}
+						},
+						"folderPath": "container"
 					},
 					"compute": {
 						"coreCount": 8,
