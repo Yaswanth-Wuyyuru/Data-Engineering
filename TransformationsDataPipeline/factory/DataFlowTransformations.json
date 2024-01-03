@@ -1,5 +1,11 @@
 {
 	"name": "DataFlowTransformations",
+	"properties": {
+		"globalConfigurations": {
+			"factoryStagingLSReferenceName": "DataPipelineLinkedService",
+			"factoryStagingLSType": "LinkedServiceReference"
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
