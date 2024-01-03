@@ -9,13 +9,21 @@
 						"referenceName": "PvotTransformation",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "SalesInput"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "PvotTransformation",
+						"type": "DatasetReference"
+					},
+					"name": "PivotTransformationOutputSink"
+				}
+			],
 			"transformations": [
 				{
-					"name": "pivot1"
+					"name": "PivotTransformation"
 				}
 			],
 			"scriptLines": [
@@ -27,9 +35,24 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 pivot(columnNaming: '$N$V',",
-				"     lateral: true) ~> pivot1"
+				"     ignoreNoFilesFound: false) ~> SalesInput",
+				"SalesInput pivot(groupBy(ProductID,",
+				"          Name),",
+				"     pivotBy(OrderYear),",
+				"     TotalOrders = sum(toDouble(OrderQuantity)),",
+				"     columnNaming: '$V$N',",
+				"     lateral: false) ~> PivotTransformation",
+				"PivotTransformation sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          ProductID as string,",
+				"          Name as string,",
+				"          OrderYear as string,",
+				"          OrderQuantity as string",
+				"     ),",
+				"     emptyLinesAsHeader: 1,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> PivotTransformationOutputSink"
 			]
 		}
 	}
