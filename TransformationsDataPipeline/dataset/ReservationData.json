@@ -1,0 +1,31 @@
+{
+	"name": "ReservationData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ReservationLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CRAFT_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "No_of_Seats",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Class_Code",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Reservation"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

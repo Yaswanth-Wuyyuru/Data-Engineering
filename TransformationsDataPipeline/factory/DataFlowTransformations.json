@@ -1,0 +1,9 @@
+{
+	"name": "DataFlowTransformations",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1abf3fe6-5ac5-472e-b1a8-15647bd7311d",
+		"tenantId": "dd9abcfe-e6ef-418f-a611-f84f0b71c986"
+	}
+}

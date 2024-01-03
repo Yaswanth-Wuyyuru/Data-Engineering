@@ -1,0 +1,95 @@
+{
+	"name": "TransformationsDataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "FlightData",
+						"type": "DatasetReference"
+					},
+					"name": "FlightData"
+				},
+				{
+					"dataset": {
+						"referenceName": "ReservationData",
+						"type": "DatasetReference"
+					},
+					"name": "ReservationData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalytics",
+						"type": "DatasetReference"
+					},
+					"name": "Sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "InnerJoin"
+				},
+				{
+					"name": "InnerJoinOperation"
+				},
+				{
+					"name": "Aggregation"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CRAFT_CODE as string,",
+				"          SOURCE as string,",
+				"          DESTINATION as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> FlightData",
+				"source(output(",
+				"          CRAFT_CODE as string,",
+				"          No_of_Seats as integer,",
+				"          Class_Code as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> ReservationData",
+				"FlightData, ReservationData join(FlightData@CRAFT_CODE == ReservationData@CRAFT_CODE,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> InnerJoin",
+				"InnerJoin select(mapColumn(",
+				"          CRAFT_CODE = FlightData@CRAFT_CODE,",
+				"          SOURCE,",
+				"          DESTINATION,",
+				"          No_of_Seats,",
+				"          Class_Code",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> InnerJoinOperation",
+				"InnerJoinOperation aggregate(groupBy(CRAFT_CODE,",
+				"          SOURCE,",
+				"          DESTINATION,",
+				"          Class_Code),",
+				"     TotalSeats = sum(No_of_Seats)) ~> Aggregation",
+				"Aggregation sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> Sink"
+			]
+		}
+	}
+}

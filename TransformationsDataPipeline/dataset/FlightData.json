@@ -1,0 +1,30 @@
+{
+	"name": "FlightData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FlightDataLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CRAFT_CODE",
+				"type": "varchar"
+			},
+			{
+				"name": "SOURCE",
+				"type": "varchar"
+			},
+			{
+				"name": "DESTINATION",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "FLIGHT"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
