@@ -1,0 +1,91 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "DataFlowTransformations"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSynapseAnalyticsLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalyticsLinkedService'"
+		},
+		"DataPipelineLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'DataPipelineLinkedService'"
+		},
+		"FlightDataLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'FlightDataLinkedService'"
+		},
+		"FlightsDatasetLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'FlightsDatasetLinkedService'"
+		},
+		"ReservationLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ReservationLinkedService'"
+		},
+		"Resevations_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Resevations'"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "DataFlowTransformations_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureSynapseAnalyticsLinkedService_connectionString": {
+						"value": "[parameters('AzureSynapseAnalyticsLinkedService_connectionString')]"
+					},
+					"DataPipelineLinkedService_connectionString": {
+						"value": "[parameters('DataPipelineLinkedService_connectionString')]"
+					},
+					"FlightDataLinkedService_connectionString": {
+						"value": "[parameters('FlightDataLinkedService_connectionString')]"
+					},
+					"FlightsDatasetLinkedService_connectionString": {
+						"value": "[parameters('FlightsDatasetLinkedService_connectionString')]"
+					},
+					"ReservationLinkedService_connectionString": {
+						"value": "[parameters('ReservationLinkedService_connectionString')]"
+					},
+					"Resevations_connectionString": {
+						"value": "[parameters('Resevations_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

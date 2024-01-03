@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DataFlowTransformations"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalyticsLinkedService_connectionString": {
+			"value": ""
+		},
+		"DataPipelineLinkedService_connectionString": {
+			"value": ""
+		},
+		"FlightDataLinkedService_connectionString": {
+			"value": ""
+		},
+		"FlightsDatasetLinkedService_connectionString": {
+			"value": ""
+		},
+		"ReservationLinkedService_connectionString": {
+			"value": ""
+		},
+		"Resevations_connectionString": {
+			"value": ""
+		}
+	}
+}
