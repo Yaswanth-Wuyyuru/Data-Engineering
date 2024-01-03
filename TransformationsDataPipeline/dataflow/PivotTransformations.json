@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "PvotTransformation",
+						"referenceName": "sink",
 						"type": "DatasetReference"
 					},
 					"name": "PivotTransformationOutputSink"
@@ -44,15 +44,16 @@
 				"     lateral: false) ~> PivotTransformation",
 				"PivotTransformation sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          ProductID as string,",
-				"          Name as string,",
-				"          OrderYear as string,",
-				"          OrderQuantity as string",
-				"     ),",
-				"     emptyLinesAsHeader: 1,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> PivotTransformationOutputSink"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> PivotTransformationOutputSink"
 			]
 		}
 	}
