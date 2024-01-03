@@ -1,0 +1,40 @@
+{
+	"name": "PvotTransformation",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "PivotTransformationsLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "PIVOT SOURCE FILE.csv",
+				"container": "container"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ProductID",
+				"type": "String"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "OrderYear",
+				"type": "String"
+			},
+			{
+				"name": "OrderQuantity",
+				"type": "String"
+			}
+		]
+	}
+}
